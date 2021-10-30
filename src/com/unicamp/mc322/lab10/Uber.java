@@ -5,7 +5,7 @@ import java.util.ArrayList;
 
 public class Uber {
 	private DecimalFormat df0 = new DecimalFormat("##.##");
-	private static ArrayList<Passenger> passengers = new ArrayList<Passenger>();
+	private static ArrayList<User> passengers = new ArrayList<User>();
 	private static ArrayList<Driver> drivers = new ArrayList<Driver>();
 	private static ArrayList<Vehicle> vehicles = new ArrayList<Vehicle>();
 	private static ArrayList<Voyage> voyages = new ArrayList<Voyage>();
@@ -27,7 +27,7 @@ public class Uber {
 		else if(searchPassengerCPF(cpf) != null)
 			System.out.println("CPF já cadastrado anteriormente. Nada a ser feito.");
 		else
-			passengers.add(new Passenger(name, cpf, creditCard, year, month, day));
+			passengers.add(new User(name, cpf, creditCard, year, month, day));
 	}
 	public void addDriver(String name, String cpf, String creditCard, int year, int month, int day, String habilitation) {
 		if(cpf == "")
@@ -84,17 +84,17 @@ public class Uber {
 			}
 		}
 	}*/
-	public void setVoyage(Driver driver, Vehicle vehicle, Passenger passenger, Position depart, Position nextStop) {
+	public void setVoyage(Driver driver, Vehicle vehicle, User passenger, Position depart, Position nextStop) {
 		voyages.add(new Voyage(driver, vehicle, passenger, depart, nextStop));
 	}
 	public void setVoyage(String driverCPF, String licencePlate, String passengerCPF, Position depart, Position nextStop) {
 		voyages.add(new Voyage(searchDriverCPF(driverCPF), searchLicencePlate(licencePlate),
 				searchPassengerCPF(passengerCPF), depart, nextStop));
 	}
-	public Passenger searchPassengerCPF(String cpf) {
+	public User searchPassengerCPF(String cpf) {
 		//System.out.println("-----------");
 		//System.out.println("Procurando usuário por CPF no cadastro.");
-		for(Passenger user : passengers)
+		for(User user : passengers)
 			if(user.getCPF().compareTo(cpf) == 0)
 				return user;
 		return null;
@@ -134,7 +134,7 @@ public class Uber {
 				return vehicle;
 		return null;
 	}
-	public void addPassenger(int voyageIndex, Passenger passenger) {
+	public void addPassenger(int voyageIndex, User passenger) {
 		voyages.get(voyageIndex).addPassenger(passenger);
 	}
 	public double getPrice(int i) {
@@ -146,7 +146,7 @@ public class Uber {
 	public void removePoint(int voyage, int point) {
 		voyages.get(voyage).removePoint(point);
 	}
-	public void removePassenger(int voyage, Passenger passenger) {
+	public void removePassenger(int voyage, User passenger) {
 		voyages.get(voyage).removePassenger(passenger);
 	}
 	public void showVoyage(int voyageIndex) {

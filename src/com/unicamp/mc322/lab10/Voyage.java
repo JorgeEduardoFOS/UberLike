@@ -6,13 +6,13 @@ public class Voyage {
 	public static double DISTANCE_COMMON_PRICE = 0.02, DISTANCE_LUX_PRICE = 0.035;
 	public static double COMMON_STOP_PRICE = 1.50, LUX_STOP_PRICE = 2.70;
 	private Driver driver;
-	private ArrayList<Passenger> actualPassengers = new ArrayList<Passenger>();
-	private ArrayList<Passenger> totalPassengers = new ArrayList<Passenger>();
+	private ArrayList<User> actualPassengers = new ArrayList<User>();
+	private ArrayList<User> totalPassengers = new ArrayList<User>();
 	private ArrayList<Position> pontos = new ArrayList<Position>();
 	private Vehicle vehicle;
 	//private double distance;
 	
-	public Voyage(Driver driver, Vehicle vehicle, Passenger passenger, Position depart, Position nextStop) {
+	public Voyage(Driver driver, Vehicle vehicle, User passenger, Position depart, Position nextStop) {
 		this.driver = driver;
 		this.vehicle = vehicle;
 		actualPassengers.add(passenger);
@@ -56,7 +56,7 @@ public class Voyage {
 			return FIXED_PRICE_LUX + getDistance() * DISTANCE_LUX_PRICE + (pontos.size() - 1) * LUX_STOP_PRICE;
 		}
 	}
-	public void addPassenger(Passenger passenger) {
+	public void addPassenger(User passenger) {
 		if(actualPassengers.size() > 2)
 			System.out.println("Número de passageiros ecedido. Nada a ser feito.");
 		else {
@@ -67,7 +67,7 @@ public class Voyage {
 	public int getStops() {
 		return pontos.size() - 1;
 	}
-	public void removePassenger(Passenger passenger) {
+	public void removePassenger(User passenger) {
 		if(actualPassengers.size() < 2)
 			System.out.println("O carro já está com o número mínimo de passageiros da viagem. Nada a ser feito.");
 		else
@@ -78,7 +78,7 @@ public class Voyage {
 			System.out.println("Acorreu algum erro no sistema.");
 		else {
 			System.out.println("A viagem contou com os passageiros:");
-			for(Passenger passenger : totalPassengers)
+			for(User passenger : totalPassengers)
 				System.out.println(passenger.getName());
 		}
 	}

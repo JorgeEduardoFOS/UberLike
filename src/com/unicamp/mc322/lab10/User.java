@@ -2,7 +2,7 @@ package com.unicamp.mc322.lab10;
 
 import java.util.Calendar;
 
-public abstract class User {
+public class User {
 	protected String name, cpf, creditCard;
 	Calendar birthdate = Calendar.getInstance();
 	Voyage voyage;
